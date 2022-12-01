@@ -56,14 +56,12 @@ const sliderPoints = document.querySelector('.slider-points'),
 const points =[]
 
 for(let i = 0; i < slidesPoints.length; i++){
-  console.log(i)
   const point = document.createElement('button')
 
   point.dataset.slideTo = i
   point.classList.add('point')
   point.classList.add('opacity')
   
-  console.log(point)
 
   point.addEventListener('click', showSlidePoints)
 
@@ -73,14 +71,31 @@ for(let i = 0; i < slidesPoints.length; i++){
 }
 
 
+
+
+
+
+/*SLIDER POINTS TIMER*/
+
+function timerToSlider(){
+  slideTo++
+}
+
+setTimeout(timerToSlider, 1000);
+
+
+/*--------------*/
+
+
+
+
+
+
 slidesPoints.forEach(item => item.style.display ='none')
 slidesPoints[0].style.display ='block'
 points[0].classList.add('point-active')
 
 function showSlidePoints(e){
-  
-  console.log(e.target)
-  console.log(e.target.dataset.slideTo)
   const slideTo = e.target.dataset.slideTo
 
   slidesPoints.forEach(item => item.style.display ='none')
@@ -89,5 +104,44 @@ function showSlidePoints(e){
   points.forEach(point => point.classList.remove('point-active'))
   e.target.classList.add('point-active')
 }
+
+
+
+
+
+/*SLIDER-3*/
+
+const sliderOrange = document.querySelector('.orange'),
+      slidersOrangeItems = sliderOrange.querySelectorAll('.orange__item'),
+      nextOrange = sliderOrange.querySelector('.orange__arrow')
+
+
+let indexOrange = 0
+
+nextOrange.addEventListener('click',()=> nextSlider(1))
+
+/*TIMER*/
+let timerOrange = setInterval(nextSlider, 7000, 1)
+nextOrange.addEventListener('click', ()=> clearInterval(timerOrange))
+timerOrange = setInterval(nextSlider, 7000, 1)
+
+
+
+
+
+function nextSlider(num){
+
+  indexOrange += num
+
+  if(indexOrange >= slidersOrangeItems.length){
+    indexOrange = 0
+  }
+
+  slidersOrangeItems.forEach(item => item.style.display='none')
+  slidersOrangeItems[indexOrange].style.display='block'
+
+
+}
+nextSlider(0)
 
 
