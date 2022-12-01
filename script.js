@@ -143,5 +143,3 @@ function nextSlider(num){
 
 }
 nextSlider(0)
-
-
